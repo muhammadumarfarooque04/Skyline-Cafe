@@ -25,7 +25,7 @@
 | 🧪 **Laboratory/Course** | Object Oriented Programming (SW121) |
 | 👨‍🏫 **Course Supervisor** | Engr. Asmatullah Zubair |
 | 👥 **Academic Cohort** | Batch K25SW |
-| 🧑‍💻 **Lead Developer** | Muhammad Umar Farooque — **Roll No:** K25SW04 |
+| 🧑‍💻 **Lead Developer** | Muhammad Umar Farooque — **Roll No:** K25SW028 |
 | 📅 **Release Date** | May 2026 |
 
 ---
