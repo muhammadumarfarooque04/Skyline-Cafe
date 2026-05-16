@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
     }
 
     private void initUI() {
-        setTitle("AL Rehan Cafe");
+        setTitle("Skyline Cafe");
         setSize(1180, 720);
         setMinimumSize(new Dimension(1000, 600));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -141,7 +141,7 @@ public class MainFrame extends JFrame {
         // ── Circular logo badge ──
         final BufferedImage[] logoImg = {null};
         try {
-            InputStream is = MainFrame.class.getResourceAsStream("/cafe/logo.png");
+            InputStream is = MainFrame.class.getResourceAsStream("/cafe/logo.jpeg");
             if (is != null) logoImg[0] = ImageIO.read(is);
         } catch (Exception ignored) {}
 
@@ -246,8 +246,8 @@ public class MainFrame extends JFrame {
     }
 
     private void addNavButton(JPanel nav, String label, String card) {
-        final Color ACTIVE_TOP = new Color(0xA0734F);
-        final Color ACTIVE_BOT = new Color(0x6B4228);
+        final Color ACTIVE_TOP = UIConstants.BTN_ACCENT_TOP;
+        final Color ACTIVE_BOT = UIConstants.BTN_ACCENT_BOT;
         final Color HOVER_TOP  = new Color(255, 255, 255, 40);
         final Color HOVER_BOT  = new Color(255, 255, 255, 10);
 
@@ -274,7 +274,7 @@ public class MainFrame extends JFrame {
             }
         };
         btn.setFont(UIConstants.FONT_REGULAR);
-        btn.setForeground(new Color(230, 210, 185));
+        btn.setForeground(new Color(0xCFD8DC));
         btn.setContentAreaFilled(false);
         btn.setBorderPainted(false);
         btn.setFocusPainted(false);

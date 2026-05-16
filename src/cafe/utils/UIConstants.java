@@ -12,38 +12,38 @@ import javax.swing.table.*;
  */
 public class UIConstants {
 
-    // Color Palette - Warm Cafe Theme
-    public static final Color PRIMARY      = new Color(0x6F4E37);   // Coffee Brown
-    public static final Color PRIMARY_DARK = new Color(0x4A3123);   // Dark Espresso
-    public static final Color ACCENT       = new Color(0xD4A96A);   // Caramel Gold
-    public static final Color SUCCESS      = new Color(0x4CAF50);   // Green
-    public static final Color DANGER       = new Color(0xE53935);   // Red
-    public static final Color WARNING      = new Color(0xFF9800);   // Orange
-    public static final Color BG_LIGHT     = new Color(0xFDF6EC);   // Cream White
-    public static final Color BG_PANEL     = new Color(0xFAF0E6);   // Linen
-    public static final Color TEXT_DARK    = new Color(0x2C1810);   // Dark Brown
-    public static final Color TEXT_GRAY    = new Color(0x757575);   // Gray
-    public static final Color SIDEBAR_BG   = new Color(0x3E2723);   // Deep Espresso
-    public static final Color TABLE_HEADER = new Color(0x6F4E37);
-    public static final Color TABLE_ROW1   = new Color(0xFFF8F0);
-    public static final Color TABLE_ROW2   = new Color(0xFFEDD8);
-    public static final Color BORDER_COLOR = new Color(0xD7CCC8);
+    // Color Palette - Neon Skyline Theme (Matches logo.jpeg)
+    public static final Color PRIMARY      = new Color(0x00E5FF);   // Electric Cyan
+    public static final Color PRIMARY_DARK = new Color(0x00B8D4);   // Deep Cyan
+    public static final Color ACCENT       = new Color(0x00E5FF);   // Neon Blue
+    public static final Color SUCCESS      = new Color(0x00E676);   // Neon Green
+    public static final Color DANGER       = new Color(0xFF1744);   // Neon Red
+    public static final Color WARNING      = new Color(0xFFEA00);   // Neon Yellow
+    public static final Color BG_LIGHT     = new Color(0x0A0E14);   // Deep Space Black
+    public static final Color BG_PANEL     = new Color(0x10161D);   // Cyber Grey
+    public static final Color TEXT_DARK    = new Color(0xE0F7FA);   // Ice White
+    public static final Color TEXT_GRAY    = new Color(0x80DEEA);   // Cyan Gray
+    public static final Color SIDEBAR_BG   = new Color(0x05080A);   // Void Black
+    public static final Color TABLE_HEADER = new Color(0x00B8D4);
+    public static final Color TABLE_ROW1   = new Color(0x10161D);
+    public static final Color TABLE_ROW2   = new Color(0x151C24);
+    public static final Color BORDER_COLOR = new Color((60 << 24) | 0x00E5FF, true); // Transparent Cyan Border
 
-    // Gradient Colors - Sidebar & Buttons (warm espresso gradient)
-    public static final Color GRAD_TOP    = new Color(0x5D3A1A);   // Warm Espresso top
-    public static final Color GRAD_BOTTOM = new Color(0x2C1A0E);   // Deep Roast bottom
-
-    // Button gradient colors
-    public static final Color BTN_PRIMARY_TOP    = new Color(0x8D6244);
-    public static final Color BTN_PRIMARY_BOT    = new Color(0x5C3D24);
-    public static final Color BTN_SUCCESS_TOP    = new Color(0x66BB6A);
-    public static final Color BTN_SUCCESS_BOT    = new Color(0x388E3C);
-    public static final Color BTN_DANGER_TOP     = new Color(0xEF5350);
-    public static final Color BTN_DANGER_BOT     = new Color(0xC62828);
-    public static final Color BTN_GRAY_TOP       = new Color(0x9E9E9E);
-    public static final Color BTN_GRAY_BOT       = new Color(0x616161);
-    public static final Color BTN_ACCENT_TOP     = new Color(0xE8BC7A);
-    public static final Color BTN_ACCENT_BOT     = new Color(0xB8893A);
+    // Gradient Colors - Cyber Glow
+    public static final Color GRAD_TOP    = new Color(0x0D47A1);   // Deep Navy
+    public static final Color GRAD_BOTTOM = new Color(0x010203);   // Pitch Black
+    
+    // Button gradient colors (Neon Glow style)
+    public static final Color BTN_PRIMARY_TOP    = new Color(0x00E5FF);
+    public static final Color BTN_PRIMARY_BOT    = new Color(0x0097A7);
+    public static final Color BTN_SUCCESS_TOP    = new Color(0x00C853);
+    public static final Color BTN_SUCCESS_BOT    = new Color(0x1B5E20);
+    public static final Color BTN_DANGER_TOP     = new Color(0xFF1744);
+    public static final Color BTN_DANGER_BOT     = new Color(0xB71C1C);
+    public static final Color BTN_GRAY_TOP       = new Color(0x455A64);
+    public static final Color BTN_GRAY_BOT       = new Color(0x263238);
+    public static final Color BTN_ACCENT_TOP     = new Color(0x00B8D4);
+    public static final Color BTN_ACCENT_BOT     = new Color(0x006064);
 
     // Fonts
     public static final Font FONT_TITLE   = new Font("Segoe UI", Font.BOLD, 22);

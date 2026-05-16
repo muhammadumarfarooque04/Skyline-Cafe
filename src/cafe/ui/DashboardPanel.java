@@ -94,7 +94,7 @@ public class DashboardPanel extends JPanel {
 
         JLabel lblGreeting = new JLabel("Welcome back, " + user.getFullName() + "!");
         lblGreeting.setFont(new Font("Segoe UI", Font.BOLD, 26));
-        lblGreeting.setForeground(UIConstants.PRIMARY_DARK);
+        lblGreeting.setForeground(UIConstants.ACCENT);
 
         String timeStr = LocalDateTime.now()
                 .format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy"));
@@ -136,10 +136,10 @@ public class DashboardPanel extends JPanel {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(Color.WHITE);
+                g2.setColor(UIConstants.BG_PANEL);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 16, 16);
                 g2.setColor(accent);
-                g2.fillRoundRect(0, getHeight() - 8, getWidth(), 8, 4, 4);
+                g2.fillRoundRect(0, getHeight() - 4, getWidth(), 4, 12, 12);
             }
         };
         card.setOpaque(false);
@@ -166,7 +166,7 @@ public class DashboardPanel extends JPanel {
 
         JLabel title = new JLabel("Recent Orders");
         title.setFont(UIConstants.FONT_BOLD);
-        title.setForeground(UIConstants.PRIMARY_DARK);
+        title.setForeground(UIConstants.PRIMARY);
         card.add(title, BorderLayout.NORTH);
 
         String[] cols = {"#", "Items", "Amount", "Status", "Time"};
@@ -179,9 +179,9 @@ public class DashboardPanel extends JPanel {
         table.setRowHeight(28);
         table.setShowGrid(false);
         table.setIntercellSpacing(new Dimension(0, 0));
-        table.setBackground(Color.WHITE);
-        table.setSelectionBackground(new Color(0xFFF3E0));
-        table.setSelectionForeground(UIConstants.TEXT_DARK);
+        table.setBackground(UIConstants.BG_PANEL);
+        table.setSelectionBackground(UIConstants.BORDER_COLOR);
+        table.setSelectionForeground(Color.WHITE);
 
         UIConstants.applyGradientHeader(table);
 
@@ -217,7 +217,8 @@ public class DashboardPanel extends JPanel {
                 super.getTableCellRendererComponent(t, val, sel, foc, row, col);
                 setBackground(row % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
                 setFont(UIConstants.FONT_SMALL);
-                setBorder(new EmptyBorder(0, 6, 0, 0));
+                setForeground(col == 2 ? UIConstants.PRIMARY : Color.WHITE); // Amount in Cyan
+                setBorder(new EmptyBorder(0, 10, 0, 10));
                 return this;
             }
         };
@@ -240,14 +241,13 @@ public class DashboardPanel extends JPanel {
 
         JLabel title = new JLabel("Revenue \u2014 Last 7 Days");
         title.setFont(UIConstants.FONT_BOLD);
-        title.setForeground(UIConstants.PRIMARY_DARK);
+        title.setForeground(UIConstants.PRIMARY);
         card.add(title, BorderLayout.NORTH);
 
         chartPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                setBackground(Color.WHITE);
                 drawBarChart((Graphics2D) g);
             }
         };
@@ -300,8 +300,8 @@ public class DashboardPanel extends JPanel {
             int y    = padT + chartH - barH;
 
             GradientPaint gp = new GradientPaint(
-                    x, y,    new Color(0xA07040),
-                    x, padT + chartH, new Color(0x5C3D20));
+                    x, y,    UIConstants.ACCENT,
+                    x, padT + chartH, UIConstants.PRIMARY_DARK);
             g2.setPaint(gp);
             g2.fillRoundRect(x, y, barW, barH, 5, 5);
 
@@ -338,7 +338,7 @@ public class DashboardPanel extends JPanel {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.setColor(Color.WHITE);
+                g2.setColor(UIConstants.BG_PANEL);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 16, 16);
             }
         };

@@ -64,7 +64,7 @@ public class SplashScreen extends JWindow {
         // ── Logo (no circle — plain transparent PNG) ──
         final BufferedImage[] logoImg = {null};
         try {
-            InputStream is = SplashScreen.class.getResourceAsStream("/cafe/logo.png");
+            InputStream is = SplashScreen.class.getResourceAsStream("/cafe/logo.jpeg");
             if (is != null) logoImg[0] = ImageIO.read(is);
         } catch (Exception ignored) {}
 
@@ -95,13 +95,13 @@ public class SplashScreen extends JWindow {
 
 
         // Cafe name
-        JLabel lblName = new JLabel("AL Rehan Cafe", SwingConstants.CENTER);
+        JLabel lblName = new JLabel("Skyline Cafe", SwingConstants.CENTER);
         lblName.setFont(new Font("Segoe UI", Font.BOLD, 30));
         lblName.setForeground(Color.WHITE);
         lblName.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Tagline
-        JLabel lblTag = new JLabel("Cafe Management System", SwingConstants.CENTER);
+        JLabel lblTag = new JLabel("Premium Neon Dining Experience", SwingConstants.CENTER);
         lblTag.setFont(new Font("Segoe UI", Font.ITALIC, 14));
         lblTag.setForeground(UIConstants.ACCENT);
         lblTag.setAlignmentX(Component.CENTER_ALIGNMENT);

@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="src/cafe/logo.png" width="120" alt="AL Rehan Cafe Logo"/>
+<img src="src/cafe/logo.jpeg" width="120" alt="Skyline Cafe Logo"/>
 
-# AL Rehan Cafe Management System
+# Skyline Cafe Management System
 
 [![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org)
@@ -11,7 +11,7 @@
 [![License](https://img.shields.io/badge/License-Academic-brightgreen?style=for-the-badge)](LICENSE)
 
 **A Full-Featured Cafe Management Desktop Application**
-*Built with Java Swing & SQLite for streamlined cafe operations*
+*Built with Java Swing & SQLite for modern dining solutions*
 
 [📥 Download Installer](#-installation) &nbsp;•&nbsp; [🚀 Run from Source](#-run-from-source-code) &nbsp;•&nbsp; [✨ Features](#-features) &nbsp;
 

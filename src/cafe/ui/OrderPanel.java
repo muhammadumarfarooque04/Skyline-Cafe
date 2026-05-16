@@ -59,7 +59,7 @@ public class OrderPanel extends JPanel {
         headerBar.setOpaque(false);
         JLabel title = new JLabel("New Order");
         title.setFont(UIConstants.FONT_TITLE);
-        title.setForeground(UIConstants.PRIMARY_DARK);
+        title.setForeground(UIConstants.ACCENT);
         headerBar.add(title, BorderLayout.WEST);
         headerBar.add(UIConstants.createLiveClock(), BorderLayout.EAST);
         add(headerBar, BorderLayout.NORTH);
@@ -83,9 +83,11 @@ public class OrderPanel extends JPanel {
         JButton btnSearch = makeBtn("Search", UIConstants.BTN_PRIMARY_TOP, UIConstants.BTN_PRIMARY_BOT);
         btnSearch.addActionListener(e -> doMenuSearch());
 
-        filterBar.add(new JLabel("Category:"));
+        JLabel lCat = new JLabel("Category:"); lCat.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lSrc = new JLabel("  Search:"); lSrc.setForeground(UIConstants.TEXT_GRAY);
+        filterBar.add(lCat);
         filterBar.add(cbCategory);
-        filterBar.add(new JLabel("  Search:"));
+        filterBar.add(lSrc);
         filterBar.add(txtSearch);
         filterBar.add(btnSearch);
 
@@ -95,7 +97,7 @@ public class OrderPanel extends JPanel {
         menuList.setSelectionBackground(UIConstants.ACCENT);
         menuList.setSelectionForeground(Color.WHITE);
         menuList.setFixedCellHeight(36);
-        menuList.setBackground(Color.WHITE);
+        menuList.setBackground(UIConstants.BG_LIGHT);
 
         // Custom cell renderer for beautiful menu items
         menuList.setCellRenderer(new DefaultListCellRenderer() {
@@ -124,12 +126,12 @@ public class OrderPanel extends JPanel {
 
                     if (isSelected) {
                         cell.setBackground(UIConstants.ACCENT);
-                        nameLabel.setForeground(Color.WHITE);
-                        priceLabel.setForeground(new Color(0xFFF3E0));
-                        catLabel.setForeground(new Color(0xFFE0B2));
+                        nameLabel.setForeground(Color.BLACK); // High contrast on bright accent
+                        priceLabel.setForeground(new Color(0x000000));
+                        catLabel.setForeground(new Color(0x333333));
                     } else {
                         cell.setBackground(index % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
-                        nameLabel.setForeground(UIConstants.TEXT_DARK);
+                        nameLabel.setForeground(Color.WHITE);
                         priceLabel.setForeground(UIConstants.PRIMARY);
                         catLabel.setForeground(UIConstants.TEXT_GRAY);
                     }
@@ -149,7 +151,10 @@ public class OrderPanel extends JPanel {
 
         JScrollPane menuScroll = new JScrollPane(menuList);
         menuScroll.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(UIConstants.BORDER_COLOR), "  Menu Items  "));
+                BorderFactory.createLineBorder(UIConstants.BORDER_COLOR), "  Menu Items  ",
+                0, 0, UIConstants.FONT_SMALL, UIConstants.TEXT_GRAY));
+        menuScroll.getViewport().setBackground(UIConstants.BG_LIGHT);
+        menuScroll.setBackground(UIConstants.BG_LIGHT);
 
         // Bottom bar: quantity spinner + add to cart button
         JPanel bottomBar = new JPanel(new BorderLayout(8, 0));
@@ -197,7 +202,10 @@ public class OrderPanel extends JPanel {
 
         JScrollPane cartScroll = new JScrollPane(cartTable);
         cartScroll.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(UIConstants.BORDER_COLOR), "  Order Cart  "));
+                BorderFactory.createLineBorder(UIConstants.BORDER_COLOR), "  Order Cart  ",
+                0, 0, UIConstants.FONT_SMALL, UIConstants.TEXT_GRAY));
+        cartScroll.getViewport().setBackground(UIConstants.BG_LIGHT);
+        cartScroll.setBackground(UIConstants.BG_LIGHT);
 
         JPanel billArea = buildBillArea();
 
@@ -212,7 +220,7 @@ public class OrderPanel extends JPanel {
     private JPanel buildBillArea() {
         JPanel bill = new JPanel();
         bill.setLayout(new BoxLayout(bill, BoxLayout.Y_AXIS));
-        bill.setBackground(Color.WHITE);
+        bill.setBackground(UIConstants.BG_PANEL);
         bill.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(UIConstants.BORDER_COLOR),
                 new EmptyBorder(14, 16, 14, 16)));
@@ -220,7 +228,7 @@ public class OrderPanel extends JPanel {
         // Total label
         lblTotal = new JLabel("Total:  Rs. 0");
         lblTotal.setFont(new Font("Segoe UI", Font.BOLD, 22));
-        lblTotal.setForeground(UIConstants.PRIMARY_DARK);
+        lblTotal.setForeground(UIConstants.ACCENT);
         lblTotal.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // ── Centered utility buttons row ──
@@ -425,7 +433,7 @@ public class OrderPanel extends JPanel {
 
         StringBuilder sb = new StringBuilder();
         sb.append(center("================================", WIDTH)).append("\n");
-        sb.append(center("     AL REHAN CAFE", WIDTH)).append("\n");
+        sb.append(center("     SKYLINE CAFE", WIDTH)).append("\n");
         sb.append(center("================================", WIDTH)).append("\n");
         sb.append(String.format("Order # : %d%n", orderId));
         sb.append(String.format("Date    : %s%n", time));
@@ -495,7 +503,14 @@ public class OrderPanel extends JPanel {
             @Override
             public Component getTableCellRendererComponent(JTable t, Object v, boolean s, boolean f, int r, int c) {
                 super.getTableCellRendererComponent(t, v, s, f, r, c);
-                if (!s) setBackground(r % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
+                if (!s) {
+                    setBackground(r % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
+                    if (c == 3) setForeground(UIConstants.PRIMARY); // Subtotal in Cyan
+                    else if (c == 1) setForeground(UIConstants.ACCENT); // Qty in Neon Cyan
+                    else setForeground(Color.WHITE);
+                } else {
+                    setForeground(Color.BLACK);
+                }
                 setBorder(new EmptyBorder(0, 8, 0, 8));
                 return this;
             }

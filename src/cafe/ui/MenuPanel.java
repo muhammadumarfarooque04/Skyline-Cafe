@@ -51,7 +51,7 @@ public class MenuPanel extends JPanel {
         headerBar.setOpaque(false);
         JLabel title = new JLabel("Menu Management");
         title.setFont(UIConstants.FONT_TITLE);
-        title.setForeground(UIConstants.PRIMARY_DARK);
+        title.setForeground(UIConstants.ACCENT);
         headerBar.add(title, BorderLayout.WEST);
         headerBar.add(UIConstants.createLiveClock(), BorderLayout.EAST);
         add(headerBar, BorderLayout.NORTH);
@@ -105,6 +105,8 @@ public class MenuPanel extends JPanel {
 
         JScrollPane scroll = new JScrollPane(table);
         scroll.setBorder(BorderFactory.createLineBorder(UIConstants.BORDER_COLOR));
+        scroll.getViewport().setBackground(UIConstants.BG_LIGHT);
+        scroll.setBackground(UIConstants.BG_LIGHT);
 
         left.add(searchBar, BorderLayout.NORTH);
         left.add(scroll, BorderLayout.CENTER);
@@ -122,14 +124,14 @@ public class MenuPanel extends JPanel {
     private JPanel buildFormPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(Color.WHITE);
+        panel.setBackground(UIConstants.BG_PANEL);
         panel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(UIConstants.BORDER_COLOR),
                 new EmptyBorder(20, 16, 20, 16)));
 
         JLabel formTitle = new JLabel("Item Details");
         formTitle.setFont(UIConstants.FONT_HEADING);
-        formTitle.setForeground(UIConstants.PRIMARY_DARK);
+        formTitle.setForeground(UIConstants.ACCENT);
         formTitle.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         txtName  = formField("Item Name *");
@@ -161,13 +163,19 @@ public class MenuPanel extends JPanel {
         btnClear.addActionListener(e -> clearForm());
         btnDelete.addActionListener(e -> deleteItem());
 
+        JLabel lName = new JLabel("Name:"); lName.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lCat  = new JLabel("Category:"); lCat.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lPrice = new JLabel("Price (Rs.):"); lPrice.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lDesc = new JLabel("Description:"); lDesc.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lStat = new JLabel("Status:"); lStat.setForeground(UIConstants.TEXT_GRAY);
+
         panel.add(formTitle);
         panel.add(Box.createVerticalStrut(14));
-        panel.add(new JLabel("Name:")); panel.add(txtName); panel.add(Box.createVerticalStrut(8));
-        panel.add(new JLabel("Category:")); panel.add(cbFormCategory); panel.add(Box.createVerticalStrut(8));
-        panel.add(new JLabel("Price (Rs.):")); panel.add(txtPrice); panel.add(Box.createVerticalStrut(8));
-        panel.add(new JLabel("Description:")); panel.add(txtDesc); panel.add(Box.createVerticalStrut(8));
-        panel.add(new JLabel("Status:")); panel.add(cbAvailable); panel.add(Box.createVerticalStrut(16));
+        panel.add(lName); panel.add(txtName); panel.add(Box.createVerticalStrut(8));
+        panel.add(lCat); panel.add(cbFormCategory); panel.add(Box.createVerticalStrut(8));
+        panel.add(lPrice); panel.add(txtPrice); panel.add(Box.createVerticalStrut(8));
+        panel.add(lDesc); panel.add(txtDesc); panel.add(Box.createVerticalStrut(8));
+        panel.add(lStat); panel.add(cbAvailable); panel.add(Box.createVerticalStrut(16));
         panel.add(btnSave); panel.add(Box.createVerticalStrut(6));
         panel.add(btnDelete); panel.add(Box.createVerticalStrut(6));
         panel.add(btnClear);
@@ -303,6 +311,9 @@ public class MenuPanel extends JPanel {
         JTextField f = new JTextField();
         f.setFont(UIConstants.FONT_REGULAR);
         f.setMaximumSize(new Dimension(Integer.MAX_VALUE, 36));
+        f.setBackground(UIConstants.BG_LIGHT);
+        f.setForeground(Color.WHITE);
+        f.setCaretColor(UIConstants.ACCENT);
         f.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(UIConstants.BORDER_COLOR),
                 new EmptyBorder(4, 8, 4, 8)));
@@ -351,7 +362,14 @@ public class MenuPanel extends JPanel {
             @Override
             public Component getTableCellRendererComponent(JTable tbl, Object val, boolean sel, boolean foc, int r, int c) {
                 super.getTableCellRendererComponent(tbl, val, sel, foc, r, c);
-                if (!sel) setBackground(r % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
+                if (!sel) {
+                    setBackground(r % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
+                    if (c == 3) setForeground(UIConstants.ACCENT); // Price in Neon Cyan
+                    else if (c == 2 || c == 5) setForeground(UIConstants.ACCENT); // Category/Available
+                    else setForeground(Color.WHITE);
+                } else {
+                    setForeground(Color.BLACK);
+                }
                 setBorder(new EmptyBorder(0, 10, 0, 10));
                 return this;
             }

@@ -16,9 +16,9 @@ public class DatabaseManager {
     static {
         String appData = System.getenv("APPDATA");
         if (appData == null) appData = System.getProperty("user.home");
-        File dbDir = new File(appData + File.separator + "CafeMS");
+        File dbDir = new File(appData + File.separator + "SkylineCafe");
         dbDir.mkdirs();
-        DB_URL = "jdbc:sqlite:" + dbDir.getAbsolutePath() + File.separator + "cafe_management.db";
+        DB_URL = "jdbc:sqlite:" + dbDir.getAbsolutePath() + File.separator + "skyline_cafe.db";
     }
     private static DatabaseManager instance;
     private Connection connection;
@@ -101,7 +101,7 @@ public class DatabaseManager {
                 "FOREIGN KEY (menu_item_id) REFERENCES menu_items(id))");
 
         // Only seed the admin account — extra users should NOT be re-seeded so deletes persist
-        stmt.execute("INSERT OR IGNORE INTO users (username,password,role,full_name) VALUES ('admin','admin123','Admin','Administrator')");
+        stmt.execute("INSERT OR IGNORE INTO users (username,password,role,full_name) VALUES ('admin','admin123','Admin','Skyline Cafe Admin')");
 
         String[] cats = {"Hot Drinks", "Cold Drinks", "Snacks", "Main Course", "Desserts"};
         for (String c : cats) {

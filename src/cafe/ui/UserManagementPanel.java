@@ -44,7 +44,7 @@ public class UserManagementPanel extends JPanel {
         headerBar.setOpaque(false);
         JLabel title = new JLabel("User Management");
         title.setFont(UIConstants.FONT_TITLE);
-        title.setForeground(UIConstants.PRIMARY_DARK);
+        title.setForeground(UIConstants.ACCENT);
         headerBar.add(title, BorderLayout.WEST);
         headerBar.add(UIConstants.createLiveClock(), BorderLayout.EAST);
         add(headerBar, BorderLayout.NORTH);
@@ -81,6 +81,8 @@ public class UserManagementPanel extends JPanel {
 
         JScrollPane scroll = new JScrollPane(table);
         scroll.setBorder(BorderFactory.createLineBorder(UIConstants.BORDER_COLOR));
+        scroll.getViewport().setBackground(UIConstants.BG_LIGHT);
+        scroll.setBackground(UIConstants.BG_LIGHT);
 
         left.add(searchBar, BorderLayout.NORTH);
         left.add(scroll, BorderLayout.CENTER);
@@ -96,14 +98,14 @@ public class UserManagementPanel extends JPanel {
     private JPanel buildFormPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBackground(Color.WHITE);
+        panel.setBackground(UIConstants.BG_PANEL);
         panel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(UIConstants.BORDER_COLOR),
                 new EmptyBorder(20, 16, 20, 16)));
 
         JLabel lTitle = new JLabel("User Details");
         lTitle.setFont(UIConstants.FONT_HEADING);
-        lTitle.setForeground(UIConstants.PRIMARY_DARK);
+        lTitle.setForeground(UIConstants.ACCENT);
         lTitle.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         txtFullName = ff();
@@ -135,10 +137,15 @@ public class UserManagementPanel extends JPanel {
 
         panel.add(lTitle);
         panel.add(Box.createVerticalStrut(14));
-        panel.add(lbl("Full Name:")); panel.add(txtFullName); panel.add(Box.createVerticalStrut(8));
-        panel.add(lbl("Username:")); panel.add(txtUsername); panel.add(Box.createVerticalStrut(8));
-        panel.add(lbl("Password:")); panel.add(txtPassword); panel.add(Box.createVerticalStrut(8));
-        panel.add(lbl("Role:")); panel.add(cbRole); panel.add(Box.createVerticalStrut(16));
+        JLabel lFull = lbl("Full Name:"); lFull.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lUser = lbl("Username:"); lUser.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lPass = lbl("Password:"); lPass.setForeground(UIConstants.TEXT_GRAY);
+        JLabel lRole = lbl("Role:"); lRole.setForeground(UIConstants.TEXT_GRAY);
+
+        panel.add(lFull); panel.add(txtFullName); panel.add(Box.createVerticalStrut(8));
+        panel.add(lUser); panel.add(txtUsername); panel.add(Box.createVerticalStrut(8));
+        panel.add(lPass); panel.add(txtPassword); panel.add(Box.createVerticalStrut(8));
+        panel.add(lRole); panel.add(cbRole); panel.add(Box.createVerticalStrut(16));
         panel.add(btnSave); panel.add(Box.createVerticalStrut(6));
         panel.add(btnDelete); panel.add(Box.createVerticalStrut(6));
         panel.add(btnClear); panel.add(Box.createVerticalStrut(14));
@@ -239,6 +246,9 @@ public class UserManagementPanel extends JPanel {
         JTextField f = new JTextField();
         f.setFont(UIConstants.FONT_REGULAR);
         f.setMaximumSize(new Dimension(Integer.MAX_VALUE, 36));
+        f.setBackground(UIConstants.BG_LIGHT);
+        f.setForeground(Color.WHITE);
+        f.setCaretColor(UIConstants.ACCENT);
         f.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(UIConstants.BORDER_COLOR),
                 new EmptyBorder(4, 8, 4, 8)));
@@ -295,7 +305,13 @@ public class UserManagementPanel extends JPanel {
             @Override
             public Component getTableCellRendererComponent(JTable t, Object v, boolean s, boolean f, int r, int c) {
                 super.getTableCellRendererComponent(t, v, s, f, r, c);
-                if (!s) setBackground(r % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
+                if (!s) {
+                    setBackground(r % 2 == 0 ? UIConstants.TABLE_ROW1 : UIConstants.TABLE_ROW2);
+                    if (c == 3) setForeground(UIConstants.ACCENT); // Role in Neon Cyan
+                    else setForeground(Color.WHITE);
+                } else {
+                    setForeground(Color.BLACK);
+                }
                 setBorder(new EmptyBorder(0, 10, 0, 10));
                 return this;
             }

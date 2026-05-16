@@ -47,7 +47,7 @@ public class OrdersListPanel extends JPanel {
         headerBar.setOpaque(false);
         JLabel title = new JLabel("Order History");
         title.setFont(UIConstants.FONT_TITLE);
-        title.setForeground(UIConstants.PRIMARY_DARK);
+        title.setForeground(UIConstants.ACCENT);
         headerBar.add(title, BorderLayout.WEST);
         headerBar.add(UIConstants.createLiveClock(), BorderLayout.EAST);
 
@@ -113,15 +113,15 @@ public class OrdersListPanel extends JPanel {
                         Rectangle r = getCellRect(row, 0, true);
                         r.width = getWidth(); // Span full table width
                         
-                        // Apply brown gradient
-                        Color c1 = new Color(0x8D5524); // Warm brown
-                        Color c2 = new Color(0x4A2E1B); // Dark brown
+                        // Apply Neon Cyan gradient
+                        Color c1 = UIConstants.PRIMARY;
+                        Color c2 = UIConstants.PRIMARY_DARK;
                         GradientPaint gp = new GradientPaint(0, r.y, c1, r.width, r.y, c2);
                         g2.setPaint(gp);
                         g2.fillRect(0, r.y, r.width, r.height);
                         
                         // Draw header text
-                        g2.setColor(new Color(0xFFF3E0)); // Very light orange/cream
+                        g2.setColor(Color.BLACK); // High contrast on neon
                         g2.setFont(getFont().deriveFont(Font.BOLD, 14f));
                         String text = firstCol.replace("DATE_SEP::", "");
                         FontMetrics fm = g2.getFontMetrics();
@@ -137,6 +137,8 @@ public class OrdersListPanel extends JPanel {
 
         JScrollPane scroll = new JScrollPane(table);
         scroll.setBorder(BorderFactory.createLineBorder(UIConstants.BORDER_COLOR));
+        scroll.getViewport().setBackground(UIConstants.BG_LIGHT);
+        scroll.setBackground(UIConstants.BG_LIGHT);
 
         add(filterBar, BorderLayout.CENTER);
         add(scroll, BorderLayout.SOUTH);
@@ -224,7 +226,7 @@ public class OrdersListPanel extends JPanel {
     private void exportCSV() {
         JFileChooser chooser = new JFileChooser();
         chooser.setDialogTitle("Export Orders Report");
-        chooser.setSelectedFile(new File("AL_Rehan_Cafe_Orders_Report.csv"));
+        chooser.setSelectedFile(new File("Skyline_Cafe_Orders_Report.csv"));
         chooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("CSV Files (*.csv)", "csv"));
 
         if (chooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) return;
@@ -329,9 +331,13 @@ public class OrdersListPanel extends JPanel {
                         if ("Completed".equals(status)) setForeground(UIConstants.SUCCESS);
                         else if ("Cancelled".equals(status)) setForeground(UIConstants.DANGER);
                         else setForeground(UIConstants.WARNING);
+                    } else if (c == 3) {
+                        setForeground(UIConstants.PRIMARY); // Total in Cyan
                     } else {
-                        setForeground(UIConstants.TEXT_DARK);
+                        setForeground(Color.WHITE);
                     }
+                } else {
+                    setForeground(Color.BLACK);
                 }
                 setBorder(new EmptyBorder(0, 10, 0, 10));
                 return this;

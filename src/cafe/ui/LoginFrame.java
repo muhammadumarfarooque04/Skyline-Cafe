@@ -30,7 +30,7 @@ public class LoginFrame extends JFrame {
     }
 
     private void initUI() {
-        setTitle("AL Rehan Cafe - Login");
+        setTitle("Skyline Cafe - Login");
         setSize(1000, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -58,7 +58,7 @@ public class LoginFrame extends JFrame {
         // Logo
         final BufferedImage[] logoImg = {null};
         try {
-            InputStream is = LoginFrame.class.getResourceAsStream("/cafe/logo.png");
+            InputStream is = LoginFrame.class.getResourceAsStream("/cafe/logo.jpeg");
             if (is != null) logoImg[0] = ImageIO.read(is);
         } catch (Exception ignored) {}
 
@@ -88,17 +88,17 @@ public class LoginFrame extends JFrame {
 
         JLabel lblWelcome = new JLabel("Welcome to", SwingConstants.CENTER);
         lblWelcome.setFont(new Font("Segoe UI", Font.PLAIN, 28));
-        lblWelcome.setForeground(new Color(0xD4B896));
+        lblWelcome.setForeground(new Color(0x80DEEA));
         lblWelcome.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel lblName = new JLabel("AL REHAN CAFE", SwingConstants.CENTER);
+        JLabel lblName = new JLabel("SKYLINE CAFE", SwingConstants.CENTER);
         lblName.setFont(new Font("Segoe UI", Font.BOLD, 54));
         lblName.setForeground(UIConstants.ACCENT);
         lblName.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel lblCity = new JLabel("Premium Coffee & Dining  •  Karachi, Pakistan", SwingConstants.CENTER);
         lblCity.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-        lblCity.setForeground(new Color(0xD4B896));
+        lblCity.setForeground(new Color(0x80DEEA));
         lblCity.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         leftPanel.add(Box.createVerticalGlue());
